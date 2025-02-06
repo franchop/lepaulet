@@ -1,0 +1,235 @@
+$size: 30rem;
+$gap: 0.5rem;
+$delay: 2s;
+$anim-dur: 1s;
+:host {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  &::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    background-color: var(--black);
+    opacity: 0.65;
+  }
+  // -------------------------------------
+  // Partie titre-------------------------
+  // -------------------------------------
+  section.title {
+    $width: 45rem;
+    position: absolute;
+    left: calc(50% - calc(#{$width} / 2));
+    top: 20rem;
+    transition: 1s;
+    opacity: 0.8;
+    width: $width;
+    z-index: 2;
+    &.show {
+      h1 {
+        padding: 0 2rem;
+        width: 100%;
+      }
+      &:after {
+        width: 64%;
+        right: 2.5rem;
+      }
+    }
+    &:after,
+    &:before {
+      content: "";
+      display: block;
+      background-color: var(--white);
+      position: absolute;
+    }
+    &:after {
+      border-radius: 1px;
+      bottom: 3rem;
+      height: 0.3rem;
+      right: -2rem;
+      transition-duration: 5s;
+      transition-delay: 0 5s;
+      transition-timing-function: cubic-bezier(0.35, 0.05, 0.1, 1.01);
+      width: 0%;
+    }
+    h1 {
+      box-sizing: border-box;
+      display: block;
+      font-family: "Great Vibes", serif;
+      font-size: 12rem;
+      font-weight: normal;
+      margin: 0;
+      overflow: hidden;
+      padding: 0;
+      transition-duration: 4s;
+      transition-timing-function: cubic-bezier(0.35, 0.05, 0.1, 1.01);
+      width: 0;
+      white-space: nowrap;
+    }
+  }
+  // -------------------------------------
+  // FIN Partie titre-------------------------
+  // -------------------------------------
+
+  // -------------------------------------
+  // Partie Liens-------------------------
+  // -------------------------------------
+  nav {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    gap: #{$gap * 2};
+    a {
+      width: 100%;
+      position: relative;
+      margin-left: 0px;
+      overflow: hidden;
+      &:first-child {
+        width: 70%;
+        animation: $delay forwards $anim-dur first-slide-in;
+        border-left: 0;
+      }
+      &:last-child {
+        width: 70%;
+        animation: $delay forwards $anim-dur last-slide-in;
+        border-right: 0;
+      }
+      &:not(:last-child) {
+        &:before {
+          content: "";
+          left: 0;
+          top: 0;
+          width: 100%;
+          height: 100%;
+          position: absolute;
+          background-color: var(--white);
+          animation: linear forwards $delay border-first-slide-in;
+          z-index: 1;
+        }
+      }
+      &:not(:first-child) {
+        &:after {
+          content: "";
+          left: 0;
+          top: 0;
+          width: 100%;
+          height: 100%;
+          position: absolute;
+          background-color: var(--white);
+          animation: linear forwards $delay border-last-slide-in;
+          z-index: 1;
+        }
+      }
+      &:hover {
+        img {
+          transform: scale(1.2);
+          transition: 4s cubic-bezier(0, 0, 0, 0.97);
+        }
+      }
+      img {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        opacity: 0.5;
+        transition: 1s;
+      }
+    }
+  }
+  @keyframes first-slide-in {
+    from {
+      clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
+    }
+
+    to {
+      clip-path: polygon(0 0, 100% 0, #{calc(100% - #{$size})} 100%, 0% 100%);
+    }
+  }
+  @keyframes last-slide-in {
+    from {
+      margin-left: 0;
+      clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
+    }
+
+    to {
+      clip-path: polygon(#{$size} 0, 100% 0, 100% 100%, 0% 100%);
+      margin-left: calc((-1 * #{$size}) + #{$gap});
+    }
+  }
+  @keyframes border-first-slide-in {
+    $width: 0.2rem;
+    0% {
+      clip-path: polygon(
+        calc(100% - $width) -100%,
+        100% -100%,
+        100% 0,
+        calc(100% - $width) 0
+      );
+    }
+    35% {
+      clip-path: polygon(
+        calc(100% - $width) 100%,
+        100% 100%,
+        100% 200%,
+        calc(100% - $width) 200%
+      );
+    }
+    50% {
+      clip-path: polygon(100% 100%, 100% 100%, 100% 100%, 100% 100%);
+      opacity: 1;
+    }
+    52% {
+      clip-path: polygon(106% 0, 160% 0, 180% 100%, 126% 100%);
+      opacity: 0.2;
+    }
+    66% {
+      clip-path: polygon(106% 0, 160% 0, 180% 100%, 126% 100%);
+    }
+    91%,
+    100% {
+      opacity: 0.2;
+      clip-path: polygon(-76% 0, -20% 0, 0% 100%, -56% 100%);
+    }
+  }
+  @keyframes border-last-slide-in {
+    $width: 0.2rem;
+    0% {
+      clip-path: polygon(0 100%, $width 100%, $width 200%, 0 200%);
+    }
+    35% {
+      clip-path: polygon(0 -100%, $width -100%, $width 0, 0 0);
+    }
+    50% {
+      clip-path: polygon(-100% -100%, -100% -100%, -100% -100%, -100% -100%);
+      opacity: 1;
+    }
+    52% {
+      clip-path: polygon(-76% 0, -20% 0, 0% 100%, -56% 100%);
+      opacity: 0.2;
+    }
+    60% {
+      clip-path: polygon(-76% 0, -20% 0, 0% 100%, -56% 100%);
+    }
+    85%,
+    100% {
+      opacity: 0.2;
+      clip-path: polygon(106% 0, 160% 0, 180% 100%, 126% 100%);
+    }
+  }
+  @keyframes margin-left-slide-in {
+    from {
+      margin-left: 0;
+    }
+    to {
+      margin-left: calc((-1 * #{$size}) + #{$gap});
+    }
+  }
+  // -------------------------------------
+  // FIN Partie titre-------------------------
+  // -------------------------------------
+}

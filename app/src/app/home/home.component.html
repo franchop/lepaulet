@@ -1,0 +1,13 @@
+<section [ngClass]="{ show: show }" class="title">
+  <h1>Le Paulet</h1>
+</section>
+<nav [ngClass]="{ show: show }">
+  <a [routerLink]="['/music']" routerLinkActive="router-link-active">
+    <img src="/vinyl.jpg" alt="" />
+    Musique
+  </a>
+  <a [routerLink]="['/photo']" routerLinkActive="router-link-active">
+    <img src="/photo.jpg" alt="" />
+    Photo
+  </a>
+</nav>
