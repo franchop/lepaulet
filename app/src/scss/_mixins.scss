@@ -1,0 +1,11 @@
+// Define breakpoints
+$mobile: 480px;
+$tablet: 768px;
+$laptop: 1024px;
+$desktop: 1440px;
+
+// Create media queries variables
+$mobile: "only screen and (max-width: #{$mobile})";
+$tablet: "only screen and (max-width: #{$tablet})";
+$laptop: "only screen and (max-width: #{$laptop})";
+$desktop: "only screen and (max-width: #{$desktop})";

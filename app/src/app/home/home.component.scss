@@ -1,14 +1,24 @@
+@use "../../scss/mixins" as *;
+
 $size: 30rem;
+$size-res: 5rem;
 $gap: 0.5rem;
 $animDuration: 2s;
 $delay: 1s;
 $bar_delay: 2 * $delay;
+$offset: 0.5rem;
+
+$animation_responsive_trigger: 1044px;
+$responsive_animation: "only all and (max-width:" #{$animation_responsive_trigger}")";
 
 :host {
   display: flex;
   align-items: center;
   width: 100%;
   height: 100%;
+  @media #{$responsive_animation} {
+    flex-direction: column;
+  }
   &::before {
     content: "";
     position: absolute;
@@ -31,14 +41,28 @@ $bar_delay: 2 * $delay;
     opacity: 0.8;
     width: $width;
     z-index: 2;
+    @media #{$responsive_animation} {
+      position: relative;
+      top: 1rem;
+      left: 0;
+      margin: 5rem 0;
+    }
     &.show {
       h1 {
         padding: 0 2rem;
         width: 100%;
+        clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+        @media #{$responsive_animation} {
+          clip-path: polygon(0 0, 190% 0, 95% 100%, 0 100%);
+        }
       }
       &:after {
         width: 64%;
         right: 2.5rem;
+        @media #{$mobile} {
+          width: 47vw;
+          right: 18vw;
+        }
       }
     }
     &:after,
@@ -57,6 +81,10 @@ $bar_delay: 2 * $delay;
       transition-delay: 0 5s;
       transition-timing-function: cubic-bezier(0.35, 0.05, 0.1, 1.01);
       width: 0%;
+      @media #{$mobile} {
+        right: 14vw;
+        bottom: 4vw;
+      }
     }
     h1 {
       box-sizing: border-box;
@@ -71,6 +99,13 @@ $bar_delay: 2 * $delay;
       transition-timing-function: cubic-bezier(0.35, 0.05, 0.1, 1.01);
       width: 0;
       white-space: nowrap;
+      @media #{$mobile} {
+        clip-path: polygon(0 0, 0 0, 0 100%, 0 100%);
+        transition-timing-function: ease;
+        font-size: 20vw;
+        width: 100%;
+        text-align: center;
+      }
     }
   }
   // -------------------------------------
@@ -86,6 +121,9 @@ $bar_delay: 2 * $delay;
     height: 100%;
     z-index: 1;
     gap: #{$gap * 2};
+    @media #{$responsive_animation} {
+      flex-direction: column;
+    }
     a {
       width: 100%;
       position: relative;
@@ -93,20 +131,42 @@ $bar_delay: 2 * $delay;
       overflow: hidden;
       animation: $animDuration forwards $delay n-slide-in;
       color: var(--white);
+      @media #{$responsive_animation} {
+        height: 60rem;
+        animation: $animDuration forwards $delay n-slide-in-res;
+      }
       &:first-child {
         width: 70%;
         animation: $animDuration forwards $delay first-slide-in;
         border-left: 0;
+        @media #{$responsive_animation} {
+          width: 100%;
+          height: 50rem;
+          animation: $animDuration forwards $delay first-slide-in-res;
+        }
         .wrapper {
           left: 30%;
+          @media #{$responsive_animation} {
+            left: 50%;
+            bottom: 50%;
+          }
         }
       }
       &:last-child {
         width: 70%;
         animation: $animDuration forwards $delay last-slide-in;
         border-right: 0;
+        @media #{$responsive_animation} {
+          width: 100%;
+          height: 50rem;
+          animation: $animDuration forwards $delay last-slide-in-res;
+        }
         .wrapper {
           left: 61%;
+          @media #{$responsive_animation} {
+            left: 50%;
+            bottom: 30%;
+          }
         }
       }
       &:not(:last-child) {
@@ -120,7 +180,26 @@ $bar_delay: 2 * $delay;
           background-color: var(--white);
           animation: forwards 0.5s border-first-slide-in,
             forwards 0.75s 1s shine-first;
+          @media #{$responsive_animation} {
+            animation: forwards 0.5s border-first-slide-in-res,
+              forwards 0.75s 1s shine-first;
+          }
           z-index: 1;
+        }
+      }
+      @media #{$responsive_animation} {
+        &:first-child {
+          &:after {
+            content: "";
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            background-color: var(--white);
+            z-index: 1;
+            animation: forwards 0.5s border-last-slide-in-res;
+          }
         }
       }
       &:not(:first-child) {
@@ -135,15 +214,25 @@ $bar_delay: 2 * $delay;
           animation: forwards 0.5s border-last-slide-in,
             forwards 1s 1s shine-last;
           z-index: 1;
+          @media #{$responsive_animation} {
+            animation: forwards 0.5s border-last-slide-in-res,
+              forwards 0.75s 1s shine-last;
+          }
         }
       }
       &:hover,
       &:focus {
+        span:not(.wrapper) {
+          font-weight: 500;
+          padding: 0 #{2 * $offset};
+          &::before {
+            clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%) !important;
+          }
+        }
         img {
           transform: scale(1.4);
           transition: transform 10s cubic-bezier(0, 0, 0, 0.5), opacity 2s;
-
-          opacity: 0.6;
+          opacity: 0.7;
         }
       }
       img {
@@ -158,25 +247,44 @@ $bar_delay: 2 * $delay;
         font-size: 4rem;
         font-weight: 200;
         position: absolute;
-        display: block;
+        display: flex;
+        justify-content: center;
         z-index: 2;
         bottom: 20rem;
         overflow: hidden;
         left: 40%;
         transform: translate(-50%);
+        @media #{$responsive_animation} {
+          left: 50%;
+          bottom: 45%;
+        }
         &:after {
           content: "";
           display: block;
+          position: absolute;
           height: 0.1rem;
           width: 0;
-          bottom: 0.2rem;
+          bottom: 0rem;
           background-color: var(--white);
           animation: 0.5s forwards $bar_delay span-after-slide-in;
         }
         span {
+          transition: 0.2s;
           display: block;
           transform: translateY(100%);
           animation: 0.75s forwards #{$bar_delay + 0.2s} title-slide-in;
+          &::before {
+            content: "";
+            width: calc(100% + #{2 * $offset});
+            left: #{-1 * $offset};
+            height: 100%;
+            position: absolute;
+            background-color: var(--black);
+            opacity: 0.7;
+            z-index: -1;
+            transition: ease-out 0.2s;
+            clip-path: polygon(0 100%, 100% 100%, 1000% 100%, 0 100%);
+          }
         }
       }
     }
@@ -237,14 +345,66 @@ $bar_delay: 2 * $delay;
     }
   }
 
+  @keyframes n-slide-in-res {
+    from {
+      clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
+    }
+
+    to {
+      clip-path: polygon(
+        0 #{$size-res},
+        100% 0,
+        100% #{calc(100% - #{$size-res})},
+        0% 100%
+      );
+      margin-top: calc((-1 * #{$size-res}) + #{$gap});
+    }
+  }
+  @keyframes first-slide-in-res {
+    from {
+      clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
+    }
+
+    to {
+      clip-path: polygon(
+        0 0,
+        100% 0,
+        100% #{calc(100% - #{$size-res})},
+        0% 100%
+      );
+    }
+  }
+  @keyframes last-slide-in-res {
+    from {
+      margin-left: 0;
+      clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
+    }
+
+    to {
+      clip-path: polygon(0 #{$size-res}, 100% 0, 100% 100%, 0% 100%);
+      margin-top: calc((-1 * #{$size-res}) + #{$gap});
+    }
+  }
+
   @keyframes shine-first {
     0% {
       opacity: 0.2;
-      clip-path: polygon(106% 0, 160% 0, 180% 100%, 126% 100%);
+      clip-path: polygon(-76% 0, -20% 0, 0% 100%, -56% 100%);
     }
     100% {
       opacity: 0.2;
-      clip-path: polygon(-76% 0, -20% 0, 0% 100%, -56% 100%);
+      clip-path: polygon(106% 0, 150% 0, 170% 100%, 126% 100%);
+    }
+  }
+
+  @keyframes shine-last {
+    0% {
+      opacity: 0.2;
+      clip-path: polygon(170% 0, 126% 0, 106% 100%, 150% 100%);
+    }
+    100% {
+      clip-path: polygon(-20% 0, -76% 0, -56% 100%, 0% 100%);
+      opacity: 0.2;
     }
   }
 
@@ -268,16 +428,6 @@ $bar_delay: 2 * $delay;
     }
   }
 
-  @keyframes shine-last {
-    0% {
-      opacity: 0.2;
-      clip-path: polygon(-76% 0, -20% 0, 0% 100%, -56% 100%);
-    }
-    100% {
-      opacity: 0.2;
-      clip-path: polygon(106% 0, 160% 0, 180% 100%, 126% 100%);
-    }
-  }
   @keyframes border-last-slide-in {
     $width: 0.2rem;
     0% {
@@ -285,6 +435,36 @@ $bar_delay: 2 * $delay;
     }
     100% {
       clip-path: polygon(0 -100%, $width -100%, $width 0, 0 0);
+    }
+  }
+
+  @keyframes border-first-slide-in-res {
+    $width: 0.2rem;
+    0% {
+      clip-path: polygon(
+        100% calc(100% - $width),
+        200% calc(100% - $width),
+        200% 100%,
+        100% 100%
+      );
+    }
+    100% {
+      clip-path: polygon(
+        -100% calc(100% - $width),
+        0 calc(100% - $width),
+        0 100%,
+        -100% 100%
+      );
+    }
+  }
+
+  @keyframes border-last-slide-in-res {
+    $width: 0.2rem;
+    0% {
+      clip-path: polygon(-100% 0, 0 0, 0 $width, -100% $width);
+    }
+    100% {
+      clip-path: polygon(100% 0, 200% 0, 200% $width, 100% $width);
     }
   }
   @keyframes margin-left-slide-in {
