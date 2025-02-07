@@ -1,7 +1,9 @@
 $size: 30rem;
 $gap: 0.5rem;
-$delay: 2s;
-$anim-dur: 1s;
+$animDuration: 2s;
+$delay: 1s;
+$bar_delay: 2 * $delay;
+
 :host {
   display: flex;
   align-items: center;
@@ -89,15 +91,23 @@ $anim-dur: 1s;
       position: relative;
       margin-left: 0px;
       overflow: hidden;
+      animation: $animDuration forwards $delay n-slide-in;
+      color: var(--white);
       &:first-child {
         width: 70%;
-        animation: $delay forwards $anim-dur first-slide-in;
+        animation: $animDuration forwards $delay first-slide-in;
         border-left: 0;
+        .wrapper {
+          left: 30%;
+        }
       }
       &:last-child {
         width: 70%;
-        animation: $delay forwards $anim-dur last-slide-in;
+        animation: $animDuration forwards $delay last-slide-in;
         border-right: 0;
+        .wrapper {
+          left: 61%;
+        }
       }
       &:not(:last-child) {
         &:before {
@@ -108,7 +118,8 @@ $anim-dur: 1s;
           height: 100%;
           position: absolute;
           background-color: var(--white);
-          animation: linear forwards $delay border-first-slide-in;
+          animation: forwards 0.5s border-first-slide-in,
+            forwards 0.75s 1s shine-first;
           z-index: 1;
         }
       }
@@ -121,14 +132,18 @@ $anim-dur: 1s;
           height: 100%;
           position: absolute;
           background-color: var(--white);
-          animation: linear forwards $delay border-last-slide-in;
+          animation: forwards 0.5s border-last-slide-in,
+            forwards 1s 1s shine-last;
           z-index: 1;
         }
       }
-      &:hover {
+      &:hover,
+      &:focus {
         img {
-          transform: scale(1.2);
-          transition: 4s cubic-bezier(0, 0, 0, 0.97);
+          transform: scale(1.4);
+          transition: transform 10s cubic-bezier(0, 0, 0, 0.5), opacity 2s;
+
+          opacity: 0.6;
         }
       }
       img {
@@ -136,9 +151,69 @@ $anim-dur: 1s;
         width: 100%;
         height: 100%;
         object-fit: cover;
-        opacity: 0.5;
+        opacity: 0.3;
         transition: 1s;
       }
+      .wrapper {
+        font-size: 4rem;
+        font-weight: 200;
+        position: absolute;
+        display: block;
+        z-index: 2;
+        bottom: 20rem;
+        overflow: hidden;
+        left: 40%;
+        transform: translate(-50%);
+        &:after {
+          content: "";
+          display: block;
+          height: 0.1rem;
+          width: 0;
+          bottom: 0.2rem;
+          background-color: var(--white);
+          animation: 0.5s forwards $bar_delay span-after-slide-in;
+        }
+        span {
+          display: block;
+          transform: translateY(100%);
+          animation: 0.75s forwards #{$bar_delay + 0.2s} title-slide-in;
+        }
+      }
+    }
+  }
+  @keyframes title-slide-in {
+    0% {
+      transform: translateY(100%);
+    }
+    100% {
+      transform: translateY(0%);
+    }
+  }
+
+  @keyframes span-after-slide-in {
+    0% {
+      width: 0%;
+      // transform: translate(50%);
+    }
+    100% {
+      width: 100%;
+      // transform: translate(0);
+    }
+  }
+
+  @keyframes n-slide-in {
+    from {
+      clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
+    }
+
+    to {
+      clip-path: polygon(
+        #{$size} 0,
+        100% 0,
+        #{calc(100% - #{$size})} 100%,
+        0% 100%
+      );
+      margin-left: calc((-1 * #{$size}) + #{$gap});
     }
   }
   @keyframes first-slide-in {
@@ -161,6 +236,18 @@ $anim-dur: 1s;
       margin-left: calc((-1 * #{$size}) + #{$gap});
     }
   }
+
+  @keyframes shine-first {
+    0% {
+      opacity: 0.2;
+      clip-path: polygon(106% 0, 160% 0, 180% 100%, 126% 100%);
+    }
+    100% {
+      opacity: 0.2;
+      clip-path: polygon(-76% 0, -20% 0, 0% 100%, -56% 100%);
+    }
+  }
+
   @keyframes border-first-slide-in {
     $width: 0.2rem;
     0% {
@@ -171,7 +258,7 @@ $anim-dur: 1s;
         calc(100% - $width) 0
       );
     }
-    35% {
+    100% {
       clip-path: polygon(
         calc(100% - $width) 100%,
         100% 100%,
@@ -179,21 +266,16 @@ $anim-dur: 1s;
         calc(100% - $width) 200%
       );
     }
-    50% {
-      clip-path: polygon(100% 100%, 100% 100%, 100% 100%, 100% 100%);
-      opacity: 1;
-    }
-    52% {
-      clip-path: polygon(106% 0, 160% 0, 180% 100%, 126% 100%);
-      opacity: 0.2;
-    }
-    66% {
-      clip-path: polygon(106% 0, 160% 0, 180% 100%, 126% 100%);
-    }
-    91%,
-    100% {
+  }
+
+  @keyframes shine-last {
+    0% {
       opacity: 0.2;
       clip-path: polygon(-76% 0, -20% 0, 0% 100%, -56% 100%);
+    }
+    100% {
+      opacity: 0.2;
+      clip-path: polygon(106% 0, 160% 0, 180% 100%, 126% 100%);
     }
   }
   @keyframes border-last-slide-in {
@@ -201,24 +283,8 @@ $anim-dur: 1s;
     0% {
       clip-path: polygon(0 100%, $width 100%, $width 200%, 0 200%);
     }
-    35% {
-      clip-path: polygon(0 -100%, $width -100%, $width 0, 0 0);
-    }
-    50% {
-      clip-path: polygon(-100% -100%, -100% -100%, -100% -100%, -100% -100%);
-      opacity: 1;
-    }
-    52% {
-      clip-path: polygon(-76% 0, -20% 0, 0% 100%, -56% 100%);
-      opacity: 0.2;
-    }
-    60% {
-      clip-path: polygon(-76% 0, -20% 0, 0% 100%, -56% 100%);
-    }
-    85%,
     100% {
-      opacity: 0.2;
-      clip-path: polygon(106% 0, 160% 0, 180% 100%, 126% 100%);
+      clip-path: polygon(0 -100%, $width -100%, $width 0, 0 0);
     }
   }
   @keyframes margin-left-slide-in {

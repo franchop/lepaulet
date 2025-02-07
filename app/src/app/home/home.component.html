@@ -4,10 +4,20 @@
 <nav [ngClass]="{ show: show }">
   <a [routerLink]="['/music']" routerLinkActive="router-link-active">
     <img src="/vinyl.jpg" alt="" />
-    Musique
+    <span class="wrapper">
+      <span> Musique </span>
+    </span>
+  </a>
+  <a [routerLink]="['/photo']" routerLinkActive="router-link-active">
+    <img src="/code.jpg" alt="" />
+    <span class="wrapper">
+      <span> Code </span>
+    </span>
   </a>
   <a [routerLink]="['/photo']" routerLinkActive="router-link-active">
     <img src="/photo.jpg" alt="" />
-    Photo
+    <span class="wrapper">
+      <span> Photo </span>
+    </span>
   </a>
 </nav>
