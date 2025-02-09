@@ -1,7 +1,6 @@
 @use "../../scss/mixins" as *;
+@use "../../scss/variables" as *;
 
-$size: 30rem;
-$size-res: 5rem;
 $gap: 0.5rem;
 $animDuration: 2s;
 $delay: 1s;
@@ -16,6 +15,7 @@ $responsive_animation: "only all and (max-width:" #{$animation_responsive_trigge
   align-items: center;
   width: 100%;
   height: 100%;
+  view-transition-name: homepage;
   @media #{$responsive_animation} {
     flex-direction: column;
   }
@@ -41,6 +41,7 @@ $responsive_animation: "only all and (max-width:" #{$animation_responsive_trigge
     opacity: 0.8;
     width: $width;
     z-index: 2;
+    view-transition-name: home-title;
     @media #{$responsive_animation} {
       position: relative;
       top: 1rem;
@@ -125,6 +126,16 @@ $responsive_animation: "only all and (max-width:" #{$animation_responsive_trigge
       flex-direction: column;
     }
     a {
+      @for $i from 1 through $links-count {
+        &:nth-child(#{$i}) {
+          view-transition-name: link-#{$i};
+        }
+        @media #{$responsive_animation} {
+          &:nth-child(#{$i}) {
+            view-transition-name: link-#{$i}-res;
+          }
+        }
+      }
       width: 100%;
       position: relative;
       margin-left: 0px;
@@ -135,37 +146,46 @@ $responsive_animation: "only all and (max-width:" #{$animation_responsive_trigge
         height: 60rem;
         animation: $animDuration forwards $delay n-slide-in-res;
       }
-      &:first-child {
-        width: 70%;
-        animation: $animDuration forwards $delay first-slide-in;
-        border-left: 0;
-        @media #{$responsive_animation} {
-          width: 100%;
-          height: 50rem;
-          animation: $animDuration forwards $delay first-slide-in-res;
-        }
-        .wrapper {
-          left: 30%;
-          @media #{$responsive_animation} {
-            left: 50%;
-            bottom: 50%;
-          }
-        }
-      }
+      &:first-child,
       &:last-child {
         width: 70%;
-        animation: $animDuration forwards $delay last-slide-in;
-        border-right: 0;
+        border-left: 0;
+        &:first-child {
+          animation: $animDuration forwards $delay first-slide-in;
+          view-transition-name: first-link;
+          @media #{$responsive_animation} {
+            view-transition-name: first-link-res;
+          }
+          .wrapper {
+            left: 30%;
+            @media #{$responsive_animation} {
+              left: 50%;
+              bottom: 50%;
+            }
+          }
+        }
+        &:last-child {
+          animation: $animDuration forwards $delay last-slide-in;
+          view-transition-name: last-link;
+          @media #{$responsive_animation} {
+            view-transition-name: last-link-res;
+          }
+          .wrapper {
+            left: 61%;
+            @media #{$responsive_animation} {
+              left: 50%;
+              bottom: 30%;
+            }
+          }
+        }
         @media #{$responsive_animation} {
           width: 100%;
           height: 50rem;
-          animation: $animDuration forwards $delay last-slide-in-res;
-        }
-        .wrapper {
-          left: 61%;
-          @media #{$responsive_animation} {
-            left: 50%;
-            bottom: 30%;
+          &:first-child {
+            animation: $animDuration forwards $delay first-slide-in-res;
+          }
+          &:last-child {
+            animation: $animDuration forwards $delay last-slide-in-res;
           }
         }
       }
@@ -316,12 +336,12 @@ $responsive_animation: "only all and (max-width:" #{$animation_responsive_trigge
 
     to {
       clip-path: polygon(
-        #{$size} 0,
+        #{$size-home} 0,
         100% 0,
-        #{calc(100% - #{$size})} 100%,
+        #{calc(100% - #{$size-home})} 100%,
         0% 100%
       );
-      margin-left: calc((-1 * #{$size}) + #{$gap});
+      margin-left: calc((-1 * #{$size-home}) + #{$gap});
     }
   }
   @keyframes first-slide-in {
@@ -330,7 +350,12 @@ $responsive_animation: "only all and (max-width:" #{$animation_responsive_trigge
     }
 
     to {
-      clip-path: polygon(0 0, 100% 0, #{calc(100% - #{$size})} 100%, 0% 100%);
+      clip-path: polygon(
+        0 0,
+        100% 0,
+        #{calc(100% - #{$size-home})} 100%,
+        0% 100%
+      );
     }
   }
   @keyframes last-slide-in {
@@ -340,8 +365,8 @@ $responsive_animation: "only all and (max-width:" #{$animation_responsive_trigge
     }
 
     to {
-      clip-path: polygon(#{$size} 0, 100% 0, 100% 100%, 0% 100%);
-      margin-left: calc((-1 * #{$size}) + #{$gap});
+      clip-path: polygon(#{$size-home} 0, 100% 0, 100% 100%, 0% 100%);
+      margin-left: calc((-1 * #{$size-home}) + #{$gap});
     }
   }
 
@@ -352,12 +377,12 @@ $responsive_animation: "only all and (max-width:" #{$animation_responsive_trigge
 
     to {
       clip-path: polygon(
-        0 #{$size-res},
+        0 #{$size-home-res},
         100% 0,
-        100% #{calc(100% - #{$size-res})},
+        100% #{calc(100% - #{$size-home-res})},
         0% 100%
       );
-      margin-top: calc((-1 * #{$size-res}) + #{$gap});
+      margin-top: calc((-1 * #{$size-home-res}) + #{$gap});
     }
   }
   @keyframes first-slide-in-res {
@@ -369,7 +394,7 @@ $responsive_animation: "only all and (max-width:" #{$animation_responsive_trigge
       clip-path: polygon(
         0 0,
         100% 0,
-        100% #{calc(100% - #{$size-res})},
+        100% #{calc(100% - #{$size-home-res})},
         0% 100%
       );
     }
@@ -381,8 +406,8 @@ $responsive_animation: "only all and (max-width:" #{$animation_responsive_trigge
     }
 
     to {
-      clip-path: polygon(0 #{$size-res}, 100% 0, 100% 100%, 0% 100%);
-      margin-top: calc((-1 * #{$size-res}) + #{$gap});
+      clip-path: polygon(0 #{$size-home-res}, 100% 0, 100% 100%, 0% 100%);
+      margin-top: calc((-1 * #{$size-home-res}) + #{$gap});
     }
   }
 
@@ -472,7 +497,7 @@ $responsive_animation: "only all and (max-width:" #{$animation_responsive_trigge
       margin-left: 0;
     }
     to {
-      margin-left: calc((-1 * #{$size}) + #{$gap});
+      margin-left: calc((-1 * #{$size-home}) + #{$gap});
     }
   }
   // -------------------------------------

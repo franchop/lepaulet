@@ -1,0 +1,205 @@
+@use "variables" as *;
+
+html {
+  &::view-transition-old(root),
+  &::view-transition-new(root) {
+    animation: none;
+  }
+
+  &::view-transition-old(music) {
+    animation: 1s musicOut;
+  }
+  &::view-transition-new(music) {
+    opacity: 0;
+    transform: scale(0.8) translate(-20%);
+    animation: 1s musicIn;
+    animation-delay: 0.5s;
+  }
+
+  &::view-transition-old(homepage) {
+    animation: 1s empty;
+  }
+
+  @for $i from 1 through $links-count {
+    &::view-transition-old(link-#{$i}) {
+      @if $i % 2 != 0 {
+        animation: 0.5s even-link-home forwards;
+      } @else {
+        animation: 1s odd-link-home forwards;
+      }
+    }
+    &::view-transition-old(link-#{$i}-res) {
+      @if $i % 2 != 0 {
+        animation: 0.5s even-link-home-res forwards;
+      } @else {
+        animation: 1s odd-link-home-res forwards;
+      }
+    }
+  }
+  &::view-transition-old(first-link) {
+    animation: 0.5s first-link forwards;
+  }
+  &::view-transition-old(last-link) {
+    animation: 0.5s last-link forwards;
+  }
+  &::view-transition-old(first-link-res) {
+    animation: 0.5s first-link-res forwards;
+  }
+  &::view-transition-old(last-link-res) {
+    animation: 0.5s last-link-res forwards;
+  }
+  &::view-transition-old(home-title) {
+    animation: 1s fadeOut forwards;
+  }
+
+  // ----------------------------------------
+
+  @keyframes musicIn {
+    20% {
+      opacity: 1;
+    }
+    50% {
+      transform: scale(0.8) translate(-10%);
+    }
+    100% {
+      opacity: 1;
+      transform: scale(1) translate(0%);
+    }
+  }
+  @keyframes musicOut {
+    to {
+      opacity: 0;
+    }
+  }
+
+  @keyframes first-link {
+    from {
+      clip-path: polygon(
+        0 0,
+        100% 0,
+        #{calc(100% - #{$size-home})} 100%,
+        0% 100%
+      );
+    }
+    to {
+      clip-path: polygon(0 0, 0 0, 0 100%, 0% 100%);
+    }
+  }
+  @keyframes odd-link-home {
+    from {
+      clip-path: polygon(
+        #{$size-home} 0,
+        100% 0,
+        #{calc(100% - #{$size-home})} 100%,
+        0% 100%
+      );
+    }
+    to {
+      clip-path: polygon(#{$size-home} 0, 100% 0, 100% 0, #{$size-home} 0);
+    }
+  }
+  @keyframes even-link-home {
+    from {
+      clip-path: polygon(
+        #{$size-home} 0,
+        100% 0,
+        #{calc(100% - #{$size-home})} 100%,
+        0% 100%
+      );
+    }
+    to {
+      clip-path: polygon(
+        0% 100%,
+        #{calc(100% - #{$size-home})} 100%,
+        #{calc(100% - #{$size-home})} 100%,
+        0% 100%
+      );
+    }
+  }
+
+  @keyframes fadeOut {
+    from {
+      opacity: 1;
+      transform: scale(1);
+    }
+    to {
+      opacity: 0;
+      transform: scale(1.2);
+    }
+  }
+
+  @keyframes last-link {
+    from {
+      clip-path: polygon(#{$size-home} 0, 100% 0, 100% 100%, 0% 100%);
+    }
+    to {
+      clip-path: polygon(100% 0, 100% 0, 100% 100%, 100% 100%);
+    }
+  }
+
+  @keyframes first-link-res {
+    from {
+      clip-path: polygon(
+        0 0,
+        100% 0,
+        100% #{calc(100% - #{$size-home-res})},
+        0% 100%
+      );
+    }
+    to {
+      clip-path: polygon(
+        0 0,
+        0% 0,
+        0% #{calc(100% - #{$size-home-res})},
+        0% 100%
+      );
+    }
+  }
+  @keyframes odd-link-home-res {
+    from {
+      clip-path: polygon(
+        0 #{$size-home-res},
+        100% 0,
+        100% #{calc(100% - #{$size-home-res})},
+        0% 100%
+      );
+    }
+    to {
+      clip-path: polygon(
+        100% 0,
+        100% 0,
+        100% #{calc(100% - #{$size-home-res})},
+        100% #{calc(100% - #{$size-home-res})}
+      );
+    }
+  }
+  @keyframes even-link-home-res {
+    from {
+      clip-path: polygon(
+        0 #{$size-home-res},
+        100% 0,
+        100% #{calc(100% - #{$size-home-res})},
+        0% 100%
+      );
+    }
+    to {
+      clip-path: polygon(
+        0 #{$size-home-res},
+        0 #{$size-home-res},
+        0% 100%,
+        0% 100%
+      );
+    }
+  }
+  @keyframes last-link-res {
+    from {
+      clip-path: polygon(0 #{$size-home-res}, 100% 0, 100% 100%, 0% 100%);
+    }
+    to {
+      clip-path: polygon(0 100%, 100% 100%, 100% 100%, 0% 100%);
+    }
+  }
+
+  @keyframes empty {
+  }
+}

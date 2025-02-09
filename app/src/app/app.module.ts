@@ -1,20 +1,56 @@
-import { NgModule, provideZoneChangeDetection } from '@angular/core';
+import { inject, NgModule, provideZoneChangeDetection } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
 import { CommonModule } from '@angular/common';
 import { HomeComponent } from './home/home.component';
-import { provideRouter, RouterModule, RouterOutlet } from '@angular/router';
+import {
+  IsActiveMatchOptions,
+  provideRouter,
+  Router,
+  RouterLink,
+  RouterModule,
+  RouterOutlet,
+  withViewTransitions,
+} from '@angular/router';
 // Importez ici d'autres composants ou modules si nécessaire
 
 import { routes } from './app.routes';
-import { MusicComponent } from './music/music.component';
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [AppComponent, HomeComponent],
-  imports: [BrowserModule, CommonModule, RouterOutlet, RouterModule],
+  imports: [
+    BrowserModule,
+    CommonModule,
+    RouterOutlet,
+    RouterModule,
+    RouterLink,
+    BrowserAnimationsModule,
+  ],
   providers: [
     provideZoneChangeDetection({ eventCoalescing: true }),
-    provideRouter(routes),
+    provideRouter(
+      routes,
+      withViewTransitions({
+        onViewTransitionCreated: ({ transition }) => {
+          const router = inject(Router);
+          const targetUrl = router.getCurrentNavigation()!.finalUrl!;
+          // Skip the transition if the only thing
+          // changing is the fragment and queryParams
+          const config: IsActiveMatchOptions = {
+            paths: 'exact',
+            matrixParams: 'exact',
+            fragment: 'ignored',
+            queryParams: 'ignored',
+          };
+          if (router.isActive(targetUrl, config)) {
+            transition.skipTransition();
+          }
+        },
+      })
+    ),
+    provideAnimationsAsync(),
   ],
 
   bootstrap: [AppComponent], // Composant racine de l'application

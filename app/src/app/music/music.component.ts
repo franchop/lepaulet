@@ -1,11 +1,10 @@
 import { Component } from '@angular/core';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-music',
-  imports: [],
+  imports: [RouterModule],
   templateUrl: './music.component.html',
-  styleUrl: './music.component.scss'
+  styleUrl: './music.component.scss',
 })
-export class MusicComponent {
-
-}
+export class MusicComponent {}
