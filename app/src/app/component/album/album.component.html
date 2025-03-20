@@ -1,0 +1,39 @@
+<div class="info">
+  <img [src]="'albums/'+album.cover" alt="">
+  <div>
+    <h2>{{album.title}} - {{album.date}}</h2>
+    <ul class="platforms">
+      <li>
+        <a target="_blank" href="{{album.spotify_url}}" title="Spotify - album '{{album.title}}'"><fa-icon [icon]="faSpotify"></fa-icon></a>
+      </li>
+      <li>
+        <a target="_blank" href="{{album.apple_music_url}}" title="Apple Music - album '{{album.title}}'"><fa-icon [icon]="faItunes"></fa-icon></a>
+      </li>
+      <li>
+        <a target="_blank" href="{{album.deezer_url}}" title="Deezer - album '{{album.title}}'"><fa-icon [icon]="faDeezer"></fa-icon></a>
+      </li>
+      <li>
+        <a target="_blank" href="{{album.youtube_url}}" title="Youtube - album '{{album.title}}'"><fa-icon [icon]="faYoutube"></fa-icon></a>
+      </li>
+    </ul>
+  </div>
+</div>
+<div class="player">
+  <hr/>
+  <h3>Lecteur intégré</h3>
+  <form>
+    <input [(ngModel)]="player" id="spotify_player" name="player" value="spotify" type="radio" >
+    <label for="spotify_player">
+      Spotify
+    </label>
+    <input [(ngModel)]="player" id="apple_player" name="player" value="apple" type="radio">
+    <label for="apple_player">
+      Apple
+    </label>
+    <span (click)="player = player === 'spotify'?'apple':'spotify'" class="toggle"></span>
+  </form>
+  <section class="mini-player">
+    <div *ngIf="player==='spotify'" [innerHtml]="appService.sanitize(album.spotify_iframe)"></div>
+    <div *ngIf="player==='apple'" [innerHtml]="appService.sanitize(album.apple_iframe)"></div>
+  </section>
+</div>

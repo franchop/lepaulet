@@ -1,5 +1,18 @@
 // Variable SCSS
 
+// Define breakpoints
+$mobile: 480px;
+$tablet: 768px;
+$laptop: 1024px;
+$desktop: 1440px;
+
+// Create media queries variables
+$mobile: "only screen and (max-width: #{$mobile})";
+$tablet: "only screen and (max-width: #{$tablet})";
+$laptop: "only screen and (max-width: #{$laptop})";
+$desktop: "only screen and (max-width: #{$desktop})";
+
+
 // Variables CSS
 :root {
   --black: rgb(23, 23, 23);
@@ -11,3 +24,4 @@
 $links-count: 20;
 $size-home: 30rem;
 $size-home-res: 5rem;
+

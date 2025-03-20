@@ -1,0 +1,67 @@
+[
+  {
+    "title":"Spacebar_",
+    "date":"25/12/2024",
+    "cover":"spacebar.png",
+    "spotify_url":"https://open.spotify.com/album/1JYIWxlxWQt9xZyyMpqwah",
+    "apple_music_url":"https://music.apple.com/us/album/spacebar-ep/1787805033?uo=4&app=music&at=1001lry3&ct=dashboard",
+    "deezer_url":"https://www.deezer.com/album/690094861",
+    "youtube_url":"https://www.youtube.com/watch?v=Ii3liNW-Xfw&list=OLAK5uy_m1NlqNOe8bMy1IVPT8EKMi652zA_aMsKg",    "apple_iframe":"<iframe title='Spacebar_ sur Apple Music' allow=\"autoplay *; encrypted-media *; fullscreen *; clipboard-write\" frameborder=\"0\" height=\"450\" style=\"width:100%;max-width:660px;overflow:hidden;border-radius:10px;\" sandbox=\"allow-forms allow-popups allow-same-origin allow-scripts allow-storage-access-by-user-activation allow-top-navigation-by-user-activation\" src=\"https://embed.music.apple.com/us/album/spacebar-ep/1787805033\"></iframe>",
+    "spotify_iframe":"<iframe title='Spacebar_ sur Spotify' style=\"border-radius:12px\" src=\"https://open.spotify.com/embed/album/1JYIWxlxWQt9xZyyMpqwah?utm_source=generator&theme=0\" width=\"100%\" height=\"352\" frameBorder=\"0\" allowfullscreen=\"\" allow=\"autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture\" loading=\"lazy\"></iframe>"
+  },
+  {
+    "title":"Donkey's Tie",
+    "date":"04/11/2023",
+    "cover":"donkeys.png",
+    "spotify_url":"https://open.spotify.com/album/7A45YGzU6zgb4Pen8Qhe0f",
+    "apple_music_url":"https://music.apple.com/us/album/donkeys-tie-ep/1715141344?uo=4&app=music&at=1001lry3&ct=dashboard",
+    "deezer_url":"https://www.deezer.com/album/508970531",
+    "youtube_url":"https://www.youtube.com/watch?v=0572JK-0iUo&list=OLAK5uy_l0nF-tqrj11ry0Z-8Q8W82aPEhrAtZU5U",    "apple_iframe":"<iframe title='Donkey's Tie sur Apple Music' allow=\"autoplay *; encrypted-media *; fullscreen *; clipboard-write\" frameborder=\"0\" height=\"450\" style=\"width:100%;max-width:660px;overflow:hidden;border-radius:10px;\" sandbox=\"allow-forms allow-popups allow-same-origin allow-scripts allow-storage-access-by-user-activation allow-top-navigation-by-user-activation\" src=\"https://embed.music.apple.com/us/album/donkeys-tie-ep/1715141344\"></iframe>",
+    "spotify_iframe":"<iframe title='Donkey's Tie sur Spotify' style=\"border-radius:12px\" src=\"https://open.spotify.com/embed/album/7A45YGzU6zgb4Pen8Qhe0f?utm_source=generator&theme=0\" width=\"100%\" height=\"352\" frameBorder=\"0\" allowfullscreen=\"\" allow=\"autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture\" loading=\"lazy\"></iframe>"
+  },
+  {
+    "title":"Binary",
+    "date":"28/01/2023",
+    "cover":"binary.png",
+    "spotify_url":"https://open.spotify.com/album/4cAWCzVHmq6ZYIPwbc3q3r",
+    "apple_music_url":"https://music.apple.com/us/album/binary-ep/1668536874?uo=4&app=music&at=1001lry3&ct=dashboard",
+    "deezer_url":"https://www.deezer.com/album/401505017",
+    "youtube_url":"https://www.youtube.com/watch?v=deebGvGQoH8&list=OLAK5uy_nQTWlTnpx21Q8XdweF7bZgWJTd3960p2k",    "apple_iframe":"<iframe title='Binary sur Apple Music' allow=\"autoplay *; encrypted-media *; fullscreen *; clipboard-write\" frameborder=\"0\" height=\"450\" style=\"width:100%;max-width:660px;overflow:hidden;border-radius:10px;\" sandbox=\"allow-forms allow-popups allow-same-origin allow-scripts allow-storage-access-by-user-activation allow-top-navigation-by-user-activation\" src=\"https://embed.music.apple.com/us/album/binary-ep/1668536874\"></iframe>",
+    "spotify_iframe":"<iframe title='Binary sur Spotify' style=\"border-radius:12px\" src=\"https://open.spotify.com/embed/album/4cAWCzVHmq6ZYIPwbc3q3r?utm_source=generator&theme=0\" width=\"100%\" height=\"352\" frameBorder=\"0\" allowfullscreen=\"\" allow=\"autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture\" loading=\"lazy\"></iframe>"
+
+  },
+  {
+    "title":"Completion",
+    "date":"25/01/2022",
+    "cover":"completion.png",
+    "spotify_url":"https://open.spotify.com/album/0oXSCqMkYGi90NKtDoboGu",
+    "apple_music_url":"https://music.apple.com/us/album/completion-ep/1607031606?uo=4&app=music&at=1001lry3&ct=dashboard",
+    "deezer_url":"https://www.deezer.com/album/290520332",
+    "youtube_url":"https://www.youtube.com/watch?v=pewBMD_ThuI&list=OLAK5uy_nfQLJjOG80IP5Lm3LzoNU9ZzUb9PpkMqQ",
+    "apple_iframe":"<iframe title='Completion sur Apple Music' allow=\"autoplay *; encrypted-media *; fullscreen *; clipboard-write\" frameborder=\"0\" height=\"450\" style=\"width:100%;max-width:660px;overflow:hidden;border-radius:10px;\" sandbox=\"allow-forms allow-popups allow-same-origin allow-scripts allow-storage-access-by-user-activation allow-top-navigation-by-user-activation\" src=\"https://embed.music.apple.com/us/album/completion-ep/1607031606\"></iframe>",
+    "spotify_iframe":"<iframe title='Completion sur Spotify' style=\"border-radius:12px\" src=\"https://open.spotify.com/embed/album/0oXSCqMkYGi90NKtDoboGu?utm_source=generator&theme=0\" width=\"100%\" height=\"352\" frameBorder=\"0\" allowfullscreen=\"\" allow=\"autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture\" loading=\"lazy\"></iframe>"
+  },
+  {
+    "title":"Empire",
+    "date":"09/02/2021",
+    "cover":"empire.png",
+    "spotify_url":"https://open.spotify.com/album/6sPonBF2V2wZfhJriC0cvH",
+    "apple_music_url":"https://music.apple.com/us/album/empire-ep/1552982533?uo=4&app=music&at=1001lry3&ct=dashboard",
+    "deezer_url":"https://www.deezer.com/album/206582992",
+    "youtube_url":"https://www.youtube.com/watch?v=b3NgK4zBhco&list=OLAK5uy_lE3tZDnVanAomilQ2O_CQrRyLNlqvZJYg",
+    "apple_iframe":"<iframe title='Empire sur Apple Music' allow=\"autoplay *; encrypted-media *; fullscreen *; clipboard-write\" frameborder=\"0\" height=\"450\" style=\"width:100%;max-width:660px;overflow:hidden;border-radius:10px;\" sandbox=\"allow-forms allow-popups allow-same-origin allow-scripts allow-storage-access-by-user-activation allow-top-navigation-by-user-activation\" src=\"https://embed.music.apple.com/us/album/empire-ep/1552982533\"></iframe>",
+    "spotify_iframe":"<iframe title='Empire sur Spotify' style=\"border-radius:12px\" src=\"https://open.spotify.com/embed/album/6sPonBF2V2wZfhJriC0cvH?utm_source=generator&theme=0\" width=\"100%\" height=\"352\" frameBorder=\"0\" allowfullscreen=\"\" allow=\"autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture\" loading=\"lazy\"></iframe>"
+  },
+  {
+    "title":"Journey",
+    "date":"13/11/2020",
+    "cover":"journey.png",
+    "spotify_url":"https://open.spotify.com/album/0gOoDGvGQihe9xY0eNajlg",
+    "apple_music_url":"https://music.apple.com/us/album/journey/1540398966?uo=4&app=music&at=1001lry3&ct=dashboard",
+    "deezer_url":"https://www.deezer.com/album/186360332",
+    "youtube_url":"https://www.youtube.com/watch?v=O-QNlmdiljw&list=PL9QsLmggVFYErOh1uHe5fhKmNVFj2EfRQ",
+    "apple_iframe":"<iframe title='Journey sur Apple Music' allow=\"autoplay *; encrypted-media *; fullscreen *; clipboard-write\" frameborder=\"0\" height=\"450\" style=\"width:100%;max-width:660px;overflow:hidden;border-radius:10px;\" sandbox=\"allow-forms allow-popups allow-same-origin allow-scripts allow-storage-access-by-user-activation allow-top-navigation-by-user-activation\" src=\"https://embed.music.apple.com/us/album/journey/1540398966\"></iframe>",
+    "spotify_iframe":"<iframe title='Journey sur Spotify' style=\"border-radius:12px\" src=\"https://open.spotify.com/embed/album/0gOoDGvGQihe9xY0eNajlg?utm_source=generator&theme=0\" width=\"100%\" height=\"352\" frameBorder=\"0\" allowfullscreen=\"\" allow=\"autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture\" loading=\"lazy\"></iframe>"
+  }
+
+]

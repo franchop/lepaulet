@@ -126,6 +126,12 @@ $responsive_animation: "only all and (max-width:" #{$animation_responsive_trigge
       flex-direction: column;
     }
     a {
+      width: 100%;
+      position: relative;
+      margin-left: 0px;
+      overflow: hidden;
+      animation: $animDuration forwards $delay n-slide-in;
+      color: var(--white);
       @for $i from 1 through $links-count {
         &:nth-child(#{$i}) {
           view-transition-name: link-#{$i};
@@ -136,12 +142,6 @@ $responsive_animation: "only all and (max-width:" #{$animation_responsive_trigge
           }
         }
       }
-      width: 100%;
-      position: relative;
-      margin-left: 0px;
-      overflow: hidden;
-      animation: $animDuration forwards $delay n-slide-in;
-      color: var(--white);
       @media #{$responsive_animation} {
         height: 60rem;
         animation: $animDuration forwards $delay n-slide-in-res;
@@ -198,13 +198,13 @@ $responsive_animation: "only all and (max-width:" #{$animation_responsive_trigge
           height: 100%;
           position: absolute;
           background-color: var(--white);
+          z-index: 1;
           animation: forwards 0.5s border-first-slide-in,
             forwards 0.75s 1s shine-first;
           @media #{$responsive_animation} {
             animation: forwards 0.5s border-first-slide-in-res,
               forwards 0.75s 1s shine-first;
           }
-          z-index: 1;
         }
       }
       @media #{$responsive_animation} {

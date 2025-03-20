@@ -1,2 +1,28 @@
-<a [routerLink]="['/']" routerLinkActive="router-link-active">Retour</a>
-<p>music works!</p>
+<nav>
+  <div>
+    <a [routerLink]="['/']" routerLinkActive="router-link-active" title="Retour"><fa-icon [icon]="faBack"></fa-icon></a>
+    <h1>Musique</h1>
+  </div>
+  <div class="me">
+    <img src="paulet.gif" alt="">
+    <div class="socials">
+      <a target="_blank" href="https://www.instagram.com/le_paulet_/" title="Voir mon instagram">
+        <fa-icon [icon]="faInstagram"></fa-icon>LePaulet
+      </a>
+      <a target="_blank" href="https://www.instagram.com/esum_tribute/" title="Voir l'instagram de ESUM">
+        <fa-icon [icon]="faInstagram"></fa-icon>ESUM
+      </a>
+    </div>
+  </div>
+  <hr/>
+  <ng-container *ngIf="albums$ | async as albums" >
+    <ul class="albums">
+      <li *ngFor="let album of albums">
+        <button (click)="this.album=album"  [attr.aria-label]="'Sélectionner ' + album.title + '('+album.date+')'">{{ album.title }}<span>{{album.date}}</span></button>
+      </li>
+    </ul>
+  </ng-container>
+</nav>
+<div class="pres">
+   <app-album *ngIf="album" [album]="album"></app-album>
+</div>

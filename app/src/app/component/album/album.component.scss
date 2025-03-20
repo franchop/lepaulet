@@ -1,0 +1,102 @@
+@use "../../../scss/mixins" as *;
+@use "../../../scss/variables" as *;
+
+:host{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  img{
+    width: 100%;
+    max-width: 30rem;
+    margin: auto;
+  }
+  div{
+    width: 100%;
+    margin: auto;
+    text-align: center;
+    &.info{
+      display: flex;
+      padding: 2rem;
+      box-sizing: border-box;
+      @media #{$tablet} {
+        flex-direction: column;
+      }
+    }
+    &.player{
+      max-width: 50rem;
+      form{
+        display: flex;
+        gap: 8rem;
+        justify-content: center;
+        font-size: 2rem;
+        margin-bottom: 2rem;
+        position: relative;
+        label{
+          cursor: pointer;
+          transition:0.2s;
+          &:last-of-type{
+            margin-right: 1.3rem;
+            & + span{
+              display: block;
+              cursor: pointer;
+              position: absolute;
+              width: 5rem;
+              height: 3rem;
+              border: solid 2px var(--white) ;
+              left:50%;
+              border-radius: 1.5rem;
+              transform: translate(-50%, -0.25rem);
+              transition: 0.2s;
+              &:before{
+                content:'';
+                position: absolute;
+                height: 80%;
+                top:10%;
+                right:6%;
+                aspect-ratio: 1.2;
+                border-radius: 1.1rem;
+                background-color: var(--white);
+                transition: 0.2s;
+                transform: translate(-55%);
+              }
+            }
+          }
+        }
+        input{
+          @include sr-only;
+          &:checked{
+            & + label{
+              font-weight: bold;
+            }
+            &:last-of-type{
+              & ~ span{
+                &:before{
+                  transform: translate(0);
+                }
+              }
+            }
+          }
+        }
+      }
+      .mini-player{
+        display: flex;
+        div{
+
+        }
+      }
+    }
+    .platforms{
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      margin-bottom: 2rem;
+      list-style: none;
+      a{
+        background-color: transparent;
+        border: none;
+        color: var(--white);
+        font-size: 4rem;
+      }
+    }
+  }
+}

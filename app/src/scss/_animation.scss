@@ -6,13 +6,23 @@ html {
     animation: none;
   }
 
-  &::view-transition-old(music) {
-    animation: 1s musicOut;
+  &::view-transition-old(musicLeft) {
+    animation: 1s musicLeftOut;
   }
-  &::view-transition-new(music) {
+  &::view-transition-new(musicLeft) {
     opacity: 0;
-    transform: scale(0.8) translate(-20%);
-    animation: 1s musicIn;
+    transform: scale(0.8) translate(-100%);
+    animation: 1s musicLeftIn;
+    animation-delay: 0.5s;
+  }
+  
+  &::view-transition-old(musicRight) {
+    animation: 1s musicRightOut;
+  }
+  &::view-transition-new(musicRight) {
+    opacity: 0;
+    transform: scale(0.8) translate(110%);
+    animation: 1s musicRightIn;
     animation-delay: 0.5s;
   }
 
@@ -54,7 +64,7 @@ html {
 
   // ----------------------------------------
 
-  @keyframes musicIn {
+  @keyframes musicLeftIn {
     20% {
       opacity: 1;
     }
@@ -66,11 +76,32 @@ html {
       transform: scale(1) translate(0%);
     }
   }
-  @keyframes musicOut {
+  @keyframes musicLeftOut {
     to {
       opacity: 0;
+      transform: scale(0.8) translate(-100%);
     }
   }
+
+  @keyframes musicRightIn {
+    20% {
+      opacity: 1;
+    }
+    50% {
+      transform: scale(0.8) translate(5%);
+    }
+    100% {
+      opacity: 1;
+      transform: scale(1) translate(0%);
+    }
+  }
+  @keyframes musicRightOut {
+    to {
+      opacity: 0;
+      transform: scale(0.8) translate(+100%);
+    }
+  }
+  
 
   @keyframes first-link {
     from {

@@ -17,6 +17,8 @@ import {
 import { routes } from './app.routes';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { provideHttpClient } from '@angular/common/http';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @NgModule({
   declarations: [AppComponent, HomeComponent],
@@ -27,9 +29,11 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     RouterModule,
     RouterLink,
     BrowserAnimationsModule,
+    FontAwesomeModule,
   ],
   providers: [
     provideZoneChangeDetection({ eventCoalescing: true }),
+    provideHttpClient(),
     provideRouter(
       routes,
       withViewTransitions({
