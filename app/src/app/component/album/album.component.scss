@@ -8,19 +8,25 @@
   img{
     width: 100%;
     max-width: 30rem;
-    margin: auto;
   }
   div{
-    width: 100%;
     margin: auto;
     text-align: center;
+    width: 100%;
     &.info{
       display: flex;
+      justify-content: center;
+      gap: 2rem;
       padding: 2rem;
       box-sizing: border-box;
       @media #{$tablet} {
         flex-direction: column;
+        align-items: center;
       }
+    }
+    &.pres{
+      width: auto;
+      margin: auto 0;
     }
     &.player{
       max-width: 50rem;
@@ -80,9 +86,6 @@
       }
       .mini-player{
         display: flex;
-        div{
-
-        }
       }
     }
     .platforms{
