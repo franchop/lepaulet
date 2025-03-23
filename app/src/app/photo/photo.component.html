@@ -1,0 +1,30 @@
+<section>
+  <app-backlink title="Photo"></app-backlink>
+  <ul class="thumbnails">
+    <ng-container *ngFor="let picture of photoService.pictures">
+      <li>
+        <button  (click)="showPicture(picture, $event.currentTarget)" >
+          <img [src]="'/photos/'+picture.name_thumbnail" alt="">
+        </button>
+      </li>
+    </ng-container>
+  </ul>
+  <section class="zoom" *ngIf="current_picture" >
+    <button title="Voir la photo précédente" (click)="previous()">
+      <fa-icon [icon]="faBack"></fa-icon>
+    </button>
+    <img #photo tabindex="-1" (click)="hidePicture()" [src]="'/photos/'+current_picture.name" alt="">
+    <div>
+      <p class="info" >
+        Focale : {{current_picture.focale}}<br/>
+        Ouverture : F/{{current_picture.aperture}}<br/>
+        Temps d'exposition : {{current_picture.exposition_time}}<br/>
+        ISO : {{current_picture.iso}}
+      </p>
+      <a target="_blank" href="/photos/{{current_picture.name}}">Ouvrir la photo dans un nouvel onglet<fa-icon [icon]="faArrowUpRightFromSquare"></fa-icon></a>
+    </div>
+    <button title="Voir la photo suivante" (click)="next()">
+      <fa-icon [icon]="faNext"></fa-icon>
+    </button>
+  </section>
+</section>

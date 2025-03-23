@@ -5,18 +5,17 @@ import { CommonModule } from '@angular/common';
 import { Observable, tap } from 'rxjs';
 import { DomSanitizer } from '@angular/platform-browser';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { faAngleLeft } from '@fortawesome/free-solid-svg-icons';
 import { faInstagram } from '@fortawesome/free-brands-svg-icons';
 import { AlbumComponent } from '../component/album/album.component';
+import { BacklinkComponent } from '../component/backlink/backlink.component';
 
 @Component({
   selector: 'app-music',
-  imports: [RouterModule,CommonModule,FontAwesomeModule, AlbumComponent],
+  imports: [RouterModule,CommonModule,FontAwesomeModule, AlbumComponent, BacklinkComponent],
   templateUrl: './music.component.html',
   styleUrl: './music.component.scss',
 })
 export class MusicComponent {
-  faBack = faAngleLeft;
   faInstagram=faInstagram;
   albums$!: Observable<any[]>;
   album:any = null;

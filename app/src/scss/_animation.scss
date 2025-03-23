@@ -61,7 +61,6 @@ html {
   &::view-transition-old(home-title) {
     animation: 1s fadeOut forwards;
   }
-
   // ----------------------------------------
 
   @keyframes musicLeftIn {

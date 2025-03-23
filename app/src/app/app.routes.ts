@@ -1,6 +1,7 @@
 import { Routes } from '@angular/router';
 import { HomeComponent } from './home/home.component';
 import { MusicComponent } from './music/music.component';
+import { PhotoComponent } from './photo/photo.component';
 
 export const routes: Routes = [
   {
@@ -11,6 +12,11 @@ export const routes: Routes = [
   {
     path: 'music',
     component: MusicComponent,
-    title: 'Accueil - LePaulet',
+    title: 'Ma musique - LePaulet',
+  },
+  {
+    path: 'photo',
+    component: PhotoComponent,
+    title: 'Mes photos - LePaulet',
   },
 ];
